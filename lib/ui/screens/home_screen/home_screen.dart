@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hesat_quran/helpers/constants.dart';
+import 'package:hesat_quran/ui/screens/sora_details_screen/sora_details_screen.dart';
 import 'package:hesat_quran/ui/theme/sizes/sizes.dart';
 import 'package:hesat_quran/ui/theme/style/colors.dart';
 import 'package:hesat_quran/ui/theme/style/font_style.dart';
@@ -56,65 +58,68 @@ class HomeScreen extends StatelessWidget {
                   padding: commonPaddingHorizental(context),
                   child: ListView.builder(
                     itemCount: 1,
-                    itemBuilder: (context, index) => Container(
-                      width: width(context, 1),
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        color: AppColors.gray,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: width(context, 0.19),
-                            height: height(context, 0.08),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(15),
-                              child: Image.asset(
-                                Constants.quranHomeScreenImage,
-                                fit: BoxFit.fill,
+                    itemBuilder: (context, index) => InkWell(
+                   onTap:()=> Get.to(()=>const SoraDetailsScreen(),transition: Transition.downToUp),
+                      child: Container(
+                        width: width(context, 1),
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: AppColors.gray,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: width(context, 0.19),
+                              height: height(context, 0.08),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(15),
+                                child: Image.asset(
+                                  Constants.quranHomeScreenImage,
+                                  fit: BoxFit.fill,
+                                ),
                               ),
                             ),
-                          ),
-                          const MediumPadding(
-                            horizental: true,
-                          ),
-                          SizedBox(
-                            width: width(context, 0.67),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'الفاتحه',
-                                  style: mediumBlackFont()
-                                      .copyWith(fontWeight: FontWeight.bold),
-                                ),
-                                SizedBox(
-                                  height: height(context, 0.024),
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      'الصفحات رقم 1',
-                                      style: sSmallBlackFont().copyWith(
-                                          color: AppColors.darkGray,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Text(
-                                      'عدد الايات 7',
-                                      style: sSmallBlackFont().copyWith(
-                                          color: AppColors.darkGray,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                            const MediumPadding(
+                              horizental: true,
                             ),
-                          ),
-                        ],
+                            SizedBox(
+                              width: width(context, 0.67),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'الفاتحه',
+                                    style: mediumBlackFont()
+                                        .copyWith(fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    height: height(context, 0.024),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        'الصفحات رقم 1',
+                                        style: sSmallBlackFont().copyWith(
+                                            color: AppColors.darkGray,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        'عدد الايات 7',
+                                        style: sSmallBlackFont().copyWith(
+                                            color: AppColors.darkGray,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

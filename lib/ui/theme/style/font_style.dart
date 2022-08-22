@@ -15,7 +15,7 @@ TextStyle sBigBlackFont() {
 }
 
 
-TextStyle mediumBlackFont() {
+ TextStyle mediumBlackFont() {
   return const TextStyle(fontSize: 14);
 }
 

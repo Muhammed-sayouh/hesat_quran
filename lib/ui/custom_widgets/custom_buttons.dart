@@ -9,7 +9,9 @@ class CustomButton extends StatelessWidget {
   final String title;
   void Function()? onTap;
   final double widthRatio;
-   CustomButton({ Key? key, required this.title  , this.onTap, this.widthRatio = 0.7}) : super(key: key);
+  final double fontSized;
+  final double textPadding ;
+   CustomButton({ Key? key, required this.title  , this.onTap, this.widthRatio = 0.7 , this.fontSized = 18,  this.textPadding = 8}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class CustomButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: width(context, widthRatio),
-            padding: const EdgeInsets.all(8),
+            padding:  EdgeInsets.all(textPadding),
             decoration: BoxDecoration(
               color: AppColors.brownLightColor,
               borderRadius: BorderRadius.circular(10),
@@ -26,7 +28,7 @@ class CustomButton extends StatelessWidget {
               child: Text(
                 title,
                 style: mediumBlackFont()
-                    .copyWith(fontWeight: FontWeight.bold ,color: AppColors.brownDarkColor ,fontSize: 18),
+                    .copyWith(fontWeight: FontWeight.bold ,color: AppColors.brownDarkColor ,fontSize: fontSized),
               ),
             ),
           ),

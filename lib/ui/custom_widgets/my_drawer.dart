@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:hesat_quran/ui/screens/audio_quran/audio_quran.dart';
 import 'package:hesat_quran/ui/screens/continue_reading/continue_reading_screen.dart';
 import 'package:hesat_quran/ui/screens/missions_screen/missions_screen.dart';
+import 'package:hesat_quran/ui/screens/notes_screen/notes_screen.dart';
 
 
 import '../../helpers/constants.dart';
@@ -73,6 +74,8 @@ class MyDrawer extends StatelessWidget {
                 DrawerItem(
                   image: Constants.notesIcon,
                   title: Constants.notes,
+                   onTap:()=> Get.to(()=>const NotesScreen(),transition: Transition.downToUp),
+
                 ),
                      DrawerItem(
                   image: Constants.infoIcon,

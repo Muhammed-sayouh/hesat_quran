@@ -16,7 +16,8 @@ class Constants {
   static const String quranHomeScreenImage =
       mainAssetImagesPath + "img_1_1.png";
   static const String xMark = mainAssetImagesPath + "close_svgrepo_com_1.png";
-  static const String homeIcon = mainAssetImagesPath + "home_svgrepo_com_1_1.png";
+  static const String homeIcon =
+      mainAssetImagesPath + "home_svgrepo_com_1_1.png";
   static const String readingIcon = mainAssetImagesPath + "reading2.png";
   static const String missionsIcon = mainAssetImagesPath + "missions.png";
   static const String notesIcon = mainAssetImagesPath + "notes.png";
@@ -26,6 +27,8 @@ class Constants {
   static const String backIcon = mainAssetImagesPath + "back_svgrepo_com_1.png";
   static const String loaderIcon = mainAssetImagesPath + "loader.gif";
   static const String addIcon = mainAssetImagesPath + "add.png";
+   static const String backCircleIcon = mainAssetImagesPath + "right_svgrepo_com_1.png";
+   static const String forwardCircleIcon = mainAssetImagesPath + "right_svgrepo_com_2.png";
 
   //texts
   static const String firstIntroScreenText =
@@ -43,9 +46,19 @@ class Constants {
   static const String continueText = "استكمال";
   static const String skip = "تخطي";
   static const String addMission = "إضافة مهمه";
+  static const String addNote = "إضافة ملاحظه";
   static const String missionAddress = "عنوان المهمه";
   static const String missionDetials = "تفاصيل المهمه";
+  static const String notesTitle = "عنوان الملاحظه";
+  static const String notesDetials = "تفاصيل الملاحظه";
   static const String missionDate = "تاريخ المهمه";
   static const String missionTime = "وقت المهمه";
   static const String addText = "إضافه";
+  static const String readingText = "التصفح";
+  static const String save = "حفظ";
+  static const String zoom = "تكبير";
+  static const String noInternet = "يرجي التحقق من الاتصال بالإنترنت";
+  static const String addedSucssefully = "تم الإضافه بنجاح";
+  static const String requiredField = "هذا الحقل مطلوب";
+  static const String deletedSucssefully = "تم الحذف بنجاح";
 }

@@ -29,6 +29,8 @@ class Constants {
   static const String addIcon = mainAssetImagesPath + "add.png";
    static const String backCircleIcon = mainAssetImagesPath + "right_svgrepo_com_1.png";
    static const String forwardCircleIcon = mainAssetImagesPath + "right_svgrepo_com_2.png";
+  static const String imagesUrl = "https://eltamiuz.net/hesaquran/images/";
+
 
   //texts
   static const String firstIntroScreenText =

@@ -19,24 +19,25 @@ class SoraPropertiesList extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-            width: width(context, 0.28),
-            height: provider.expand
-                ? height(context, 0.58)
-                : height(context, 0.35),
+            width: width(context, 0.3),
+            height:
+                provider.expand ? height(context, 0.58) : height(context, 0.35),
             child: ListView.builder(
-              itemCount: 9,
+              itemCount: provider.categories.length,
               itemBuilder: (context, index) => Container(
-                padding: const EdgeInsets.all(3),
+                padding: const EdgeInsets.symmetric(vertical: 8),
                 margin: const EdgeInsets.symmetric(
-                    vertical: 6),
+                  vertical: 5,
+                ),
                 decoration: BoxDecoration(
                   color: AppColors.brownLightColor,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Center(
                     child: Text(
-                  'data',
-                  style: mediumBlackFont().copyWith(
+                  provider.categories[index].name,
+                  textAlign: TextAlign.center,
+                  style: sSmallBlackFont().copyWith(
                       fontWeight: FontWeight.bold,
                       color: AppColors.brownDarkColor),
                 )),

@@ -39,15 +39,18 @@ class _MissionsScreenState extends State<MissionsScreen> {
               ? Center(
                   child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
                       'عفوا',
+                      textAlign: TextAlign.center,
                       style: titleStyle().copyWith(
                           color: AppColors.brownDarkColor,
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
                       'لا توجد مهام',
+                      textAlign: TextAlign.center,
                       style: bigBlackFont().copyWith(
                         color: AppColors.brownAccentColor,
                       ),
@@ -71,8 +74,8 @@ class _MissionsScreenState extends State<MissionsScreen> {
                 ),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniStartFloat,
       floatingActionButton: InkWell(
-          onTap: () => Get.to(() => const AddMissionScreen(),
-              transition: Transition.downToUp),
+          onTap: () => Get.to(() =>  AddMissionScreen(),
+              transition: Transition.downToUp)?.then((value) => provider.fetchMission(context)),
           child: const CustomAssetImage(
             imagePath: Constants.addIcon,
             width: 55,

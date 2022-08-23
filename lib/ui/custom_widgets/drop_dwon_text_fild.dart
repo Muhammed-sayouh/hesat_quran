@@ -2,7 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hesat_quran/helpers/constants.dart';
 import 'package:hesat_quran/ui/theme/style/font_style.dart';
+import 'package:provider/provider.dart';
 
+import '../../models/home_model.dart';
+import '../../view_model/home_view_model.dart';
 import '../theme/style/colors.dart';
 
 class DropDown extends StatefulWidget {
@@ -18,11 +21,13 @@ class _DropDownState extends State<DropDown> {
     "سورة ال عمران",
     "سورة المائده",
   ];
-  String? _currentSelectedValue;
+  HomeModel? _currentSelectedValue;
   @override
   Widget build(BuildContext context) {
-    return FormField<String>(
-      builder: (FormFieldState<String> state) {
+    final provider = Provider.of<HomeViewModel>(context).homeItems;
+
+    return FormField<HomeModel>(
+      builder: (FormFieldState<HomeModel> state) {
         return InputDecorator(
           decoration: InputDecoration(
               contentPadding:
@@ -33,7 +38,7 @@ class _DropDownState extends State<DropDown> {
           child: Directionality(
             textDirection: TextDirection.rtl,
             child: DropdownButtonHideUnderline(
-              child: DropdownButton<String>(
+              child: DropdownButton<HomeModel>(
                 hint: Text(
                   'اختر السوره',
                   style: TextStyle(
@@ -44,20 +49,20 @@ class _DropDownState extends State<DropDown> {
                   child: Image.asset(Constants.downArrowImage)),
                 value: _currentSelectedValue,
                 isDense: true,
-                onChanged: (String? newValue) {
+                onChanged: (HomeModel? newValue) {
                   setState(() {
                     _currentSelectedValue = newValue;
                     state.didChange(newValue);
                   });
                 },
                 
-                items: _currencies.map((String value) {
-                  return DropdownMenuItem<String>(
+                items: provider.map((HomeModel value) {
+                  return DropdownMenuItem<HomeModel>(
                     value: value,
                     
                     child: Align(
                       alignment: Alignment.centerRight,
-                      child: Text(value, 
+                      child: Text(value.name, 
                       textDirection: TextDirection.rtl,
                            style: TextStyle(
                         height: 1.6, color: AppColors.darkGray, fontSize: 15),),

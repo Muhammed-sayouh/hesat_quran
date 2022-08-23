@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hesat_quran/helpers/constants.dart';
@@ -5,23 +6,38 @@ import 'package:hesat_quran/ui/screens/sora_details_screen/sora_details_screen.d
 import 'package:hesat_quran/ui/theme/sizes/sizes.dart';
 import 'package:hesat_quran/ui/theme/style/colors.dart';
 import 'package:hesat_quran/ui/theme/style/font_style.dart';
+import 'package:hesat_quran/view_model/home_view_model.dart';
+import 'package:provider/provider.dart';
 
 import '../../custom_widgets/home_appbar.dart';
 import '../../custom_widgets/my_drawer.dart';
 import '../../custom_widgets/top_Widget_home_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    Provider.of<HomeViewModel>(context, listen: false).fetchHome(context);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<HomeViewModel>(context);
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
         key: _scaffoldkey,
         drawer: const MyDrawer(),
-        body: SafeArea(
+        body:provider.Loader?const Center(child: CupertinoActivityIndicator()) : SafeArea(
           child: Column(
             children: [
               HomeAppBar(
@@ -56,11 +72,15 @@ class HomeScreen extends StatelessWidget {
               Expanded(
                 child: Padding(
                   padding: commonPaddingHorizental(context),
-                  child: ListView.builder(
-                    itemCount: 1,
+                  child:ListView.builder(
+                    itemCount: provider.homeItems.length,
                     itemBuilder: (context, index) => InkWell(
-                   onTap:()=> Get.to(()=>const SoraDetailsScreen(),transition: Transition.downToUp),
+                      onTap: () => Get.to(() =>  SoraDetailsScreen(
+                        page:provider.homeItems[index].page ,
+                      ),
+                          transition: Transition.downToUp),
                       child: Container(
+                        margin: const EdgeInsets.symmetric(vertical: 8),
                         width: width(context, 1),
                         padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
@@ -86,11 +106,12 @@ class HomeScreen extends StatelessWidget {
                             SizedBox(
                               width: width(context, 0.67),
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'الفاتحه',
+                                    provider.homeItems[index].name,
                                     style: mediumBlackFont()
                                         .copyWith(fontWeight: FontWeight.bold),
                                   ),
@@ -102,13 +123,13 @@ class HomeScreen extends StatelessWidget {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        'الصفحات رقم 1',
+                                   provider.homeItems[index].pagesNum,
                                         style: sSmallBlackFont().copyWith(
                                             color: AppColors.darkGray,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       Text(
-                                        'عدد الايات 7',
+                                        'عدد الايات ${ provider.homeItems[index].ayatNum}',
                                         style: sSmallBlackFont().copyWith(
                                             color: AppColors.darkGray,
                                             fontWeight: FontWeight.bold),

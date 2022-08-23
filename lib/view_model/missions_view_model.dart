@@ -1,42 +1,80 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hesat_quran/helpers/constants.dart';
 import 'package:hesat_quran/helpers/exption.dart';
+import 'package:hesat_quran/services/add_mission_service.dart';
 import 'package:hesat_quran/services/add_note_service.dart';
 import 'package:hesat_quran/services/delete_mission_service.dart';
 import 'package:hesat_quran/services/get_my_missions.dart';
-import 'package:hesat_quran/services/get_my_notes.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../models/my_mission_model.dart';
-import '../models/my_notes_model.dart';
-import '../services/delete_note_service.dart';
 import '../ui/custom_widgets/custome_toast.dart';
 
 class MissionsViewModel with ChangeNotifier {
   TextEditingController title = TextEditingController();
   TextEditingController details = TextEditingController();
+  TextEditingController time = TextEditingController();
+  TextEditingController date = TextEditingController();
+
+  TimeOfDay selectedTime = TimeOfDay.now();
+  DateTime selectedDate = DateTime.now();
 
   List<MyMissionsModel> missions = [];
 
   bool loader = false;
 
   bool getmissionsLoader = false;
-  Future<void> addNote(
+
+  Future<void> selectTime(BuildContext context, Widget child) async {
+    final TimeOfDay? picked = await showTimePicker(
+        context: context,
+        initialTime: selectedTime,
+        builder: (BuildContext context, Widget? child) {
+          return MediaQuery(
+            data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+            child: child!,
+          );
+        });
+
+    if (picked != null && picked != selectedTime) {
+      selectedTime = picked;
+      time.text = selectedTime.format(context).toString();
+      notifyListeners();
+    }
+  }
+
+  Future<void> selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: selectedDate,
+        firstDate: DateTime(2015, 8),
+        lastDate: DateTime(2101));
+    if (picked != null && picked != selectedDate) {
+      selectedDate = picked;
+      date.text = DateFormat('yyyy-MM-dd').format(selectedDate).toString();
+      notifyListeners();
+    }
+  }
+
+  Future<void> addMission(
       BuildContext context, GlobalKey<FormState> formKey) async {
     if (!formKey.currentState!.validate()) {
       return;
     }
-    bool done = Provider.of<AddNoteService>(context, listen: false).doneAddNote;
+
     loader = true;
     notifyListeners();
     try {
-      done = await Provider.of<AddNoteService>(context, listen: false)
-          .addNote(details: details.text, title: title.text);
+      await Provider.of<AddMissionService>(context, listen: false).addMission(
+          details: details.text,
+          title: title.text,
+          time: time.text,
+          date: date.text);
       loader = false;
       customToast(Constants.addedSucssefully);
       Get.back();
-
       notifyListeners();
     } on HttpExeption catch (err) {
       customToast(err.message);

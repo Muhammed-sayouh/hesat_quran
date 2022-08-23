@@ -11,15 +11,17 @@ class TopWidgetHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Row(
-      children:const [
-         Expanded(child: CustomTextFormFild(
+      children: const [
+        Expanded(
+            child: CustomTextFormFild(
           hint: 'بحث',
         )),
-         MediumPadding(
+        MediumPadding(
           horizental: true,
         ),
-         Expanded(child:  DropDown()),
+        Expanded(child: DropDown()),
       ],
     );
   }

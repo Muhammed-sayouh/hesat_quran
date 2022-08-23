@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hesat_quran/view_model/home_view_model.dart';
+import 'package:provider/provider.dart';
 
 import '../../helpers/constants.dart';
 import '../theme/sizes/sizes.dart';

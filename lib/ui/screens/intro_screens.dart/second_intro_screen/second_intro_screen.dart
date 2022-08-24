@@ -1,13 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:hesat_quran/helpers/constants.dart';
 import 'package:hesat_quran/ui/custom_widgets/next_back_widget.dart';
 import 'package:hesat_quran/ui/custom_widgets/tow_dots_widget.dart';
 import 'package:hesat_quran/ui/theme/sizes/sizes.dart';
 import 'package:hesat_quran/ui/theme/style/font_style.dart';
 
-class SecondIntroScreen extends StatelessWidget {
+class SecondIntroScreen extends StatefulWidget {
   const SecondIntroScreen({Key? key}) : super(key: key);
 
+  @override
+  State<SecondIntroScreen> createState() => _SecondIntroScreenState();
+}
+
+class _SecondIntroScreenState extends State<SecondIntroScreen> {
+
+GetStorage storage = GetStorage();
+  @override
+  void initState() {
+    storage.write("first", true);
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

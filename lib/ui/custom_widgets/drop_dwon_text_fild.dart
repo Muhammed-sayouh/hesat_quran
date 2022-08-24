@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hesat_quran/helpers/constants.dart';
 import 'package:hesat_quran/ui/theme/style/font_style.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/home_model.dart';
 import '../../view_model/home_view_model.dart';
+import '../screens/sora_details_screen/sora_details_screen.dart';
 import '../theme/style/colors.dart';
 
 class DropDown extends StatefulWidget {
@@ -16,11 +18,7 @@ class DropDown extends StatefulWidget {
 }
 
 class _DropDownState extends State<DropDown> {
-  final _currencies = [
-    "سورة البقره",
-    "سورة ال عمران",
-    "سورة المائده",
-  ];
+
   HomeModel? _currentSelectedValue;
   @override
   Widget build(BuildContext context) {
@@ -34,8 +32,7 @@ class _DropDownState extends State<DropDown> {
                   const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
               border:
                   OutlineInputBorder(borderRadius: BorderRadius.circular(5.0))),
-          // isEmpty: _currentSelectedValue == 'اختر السوره',
-          child: Directionality(
+                    child: Directionality(
             textDirection: TextDirection.rtl,
             child: DropdownButtonHideUnderline(
               child: DropdownButton<HomeModel>(
@@ -53,6 +50,12 @@ class _DropDownState extends State<DropDown> {
                   setState(() {
                     _currentSelectedValue = newValue;
                     state.didChange(newValue);
+                 Get.to(
+                                () => SoraDetailsScreen(
+                                      page: newValue!.page,
+                                      soraId:newValue.id,
+                                    ),
+                                transition: Transition.downToUp);
                   });
                 },
                 

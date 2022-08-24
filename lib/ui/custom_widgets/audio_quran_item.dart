@@ -14,37 +14,35 @@ class AudioQuranItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-          padding: commonPaddingHorizental(context),
-          child: Container(
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: AppColors.brownLightColor,
-            ),
-            child: Column(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(100),
-                  child: CustomNetworkImage(
-                    imagePath:
-                       image,
-                    height: height(context, 0.18),
-                    width: height(context, 0.18),
-                  ),
-                ),
-                SizedBox(
-                  height: height(context, 0.03),
-                ),
-                Text(
-                  name,
-                  style: mediumBlackFont().copyWith(
-                      color: AppColors.brownDarkColor,
-                      fontWeight: FontWeight.bold),
-                )
-              ],
+    return Container(
+      // margin: EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 13,vertical: 12),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        color: AppColors.brownLightColor,
+      ),
+      child: Column(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(100),
+            child: CustomNetworkImage(
+              imagePath:
+                 image,
+              height: height(context, 0.18),
+              width: height(context, 0.18),
             ),
           ),
-        );
+          SizedBox(
+            height: height(context, 0.03),
+          ),
+          Text(
+            name,
+            style: mediumBlackFont().copyWith(
+                color: AppColors.brownDarkColor,
+                fontWeight: FontWeight.bold),
+          )
+        ],
+      ),
+    );
   }
 }

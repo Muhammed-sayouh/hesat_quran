@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:hesat_quran/helpers/constants.dart';
+import 'package:hesat_quran/helpers/exption.dart';
 import 'package:hesat_quran/services/get_my_categories.dart';
+import 'package:hesat_quran/services/save_sora_service.dart';
+import 'package:provider/provider.dart';
 
 import '../models/categories_model.dart';
+import '../ui/custom_widgets/custome_toast.dart';
 
 class SoraDetialsViewModel with ChangeNotifier {
   bool expand = false;
@@ -55,6 +59,22 @@ class SoraDetialsViewModel with ChangeNotifier {
 
       print(imageUrl);
       notifyListeners();
+    }
+  }
+
+  Future<void> saveSora(BuildContext context, String soraId) async {
+    notifyListeners();
+    try {
+      await Provider.of<SaveSoraService>(context, listen: false)
+          .saveSoraSer(page: initialPageNumber.toString(), soraId: soraId);
+
+      customToast("تم الحفظ للاستكمال من مكان السوره");
+
+      notifyListeners();
+    } on HttpExeption catch (err) {
+      customToast(err.message);
+    } catch (error) {
+      customToast(Constants.noInternet);
     }
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:hesat_quran/helpers/constants.dart';
+import 'package:hesat_quran/ui/screens/home_screen/home_screen.dart';
 import 'package:hesat_quran/ui/screens/intro_screens.dart/first_intro_screen/first_intro_screen.dart';
 import 'package:hesat_quran/ui/theme/sizes/sizes.dart';
 
@@ -11,12 +13,16 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  GetStorage storage = GetStorage();
+
   @override
   void initState() {
     Future.delayed(const Duration(seconds: 3))
         .then((value) => Navigator.of(context).push(
               MaterialPageRoute<void>(
-                builder: (BuildContext context) => const FirstIntroScreen(),
+                builder: (BuildContext context) => storage.read("first")!=null?
+                     HomeScreen()
+                    : const FirstIntroScreen(),
               ),
             ));
     super.initState();

@@ -27,11 +27,22 @@ class Constants {
   static const String backIcon = mainAssetImagesPath + "back_svgrepo_com_1.png";
   static const String loaderIcon = mainAssetImagesPath + "loader.gif";
   static const String addIcon = mainAssetImagesPath + "add.png";
-   static const String backCircleIcon = mainAssetImagesPath + "right_svgrepo_com_1.png";
-   static const String forwardCircleIcon = mainAssetImagesPath + "right_svgrepo_com_2.png";
+  static const String whatsAppIcon = mainAssetImagesPath + "whatsapp.png";
+  static const String locationIcon = mainAssetImagesPath + "location_icon.png";
+  static const String backCircleIcon =
+      mainAssetImagesPath + "right_svgrepo_com_1.png";
+  static const String forwardCircleIcon =
+      mainAssetImagesPath + "right_svgrepo_com_2.png";
   static const String imagesUrl = "https://eltamiuz.net/hesaquran/images/";
-
-
+  static const String redQuranIcon = mainAssetImagesPath + "pngwing_8.png";
+  static const String playIcon = mainAssetImagesPath + "play_svgrepo_com_1.png";
+  static const String puseIcon =
+      mainAssetImagesPath + "pause_svgrepo_com_1.png";
+  static const String forwardPlayIcon =
+      mainAssetImagesPath + "skip_forward_mini_fill_svgrepo_com_2.png";
+  static const String backPlayIcon =
+      mainAssetImagesPath + "skip_forward_mini_fill_svgrepo_com_3.png";
+  static const String soundsUrl = "https://eltamiuz.net/hesaquran/sounds/";
   //texts
   static const String firstIntroScreenText =
       'تطبيق حصه قران هوا تطبيق يساعدك علي فهم التفاسير الخاصه بسور وأيات القران الكريم من حيث اسباب  نزول الايه ومقصد النزول وتفسيرها حتي يسهل علي القارئ فهم ايات القران الكريم';

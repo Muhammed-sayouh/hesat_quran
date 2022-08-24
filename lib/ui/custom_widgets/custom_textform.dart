@@ -36,13 +36,14 @@ class CustomTextFieldAddMission extends StatelessWidget {
   final int? maxLines;
   final String? Function(String?)? validator;
   final TextEditingController? controller;
+  final TextInputType? keyboardType;
   const CustomTextFieldAddMission(
       {Key? key,
       required this.title,
       this.enebled = true,
       this.maxLines = 1,
       this.controller,
-      this.validator})
+      this.validator, this.keyboardType})
       : super(key: key);
 
   @override
@@ -60,6 +61,7 @@ class CustomTextFieldAddMission extends StatelessWidget {
           controller: controller,
           enabled: enebled,
           maxLines: maxLines,
+          keyboardType: keyboardType,
         ),
         const MediumPadding(),
       ],

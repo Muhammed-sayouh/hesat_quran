@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hesat_quran/helpers/constants.dart';
 import 'package:hesat_quran/ui/custom_widgets/common_appbar.dart';
 import 'package:hesat_quran/ui/custom_widgets/custom_buttons.dart';
 import 'package:hesat_quran/ui/custom_widgets/custom_images.dart';
+import 'package:hesat_quran/ui/screens/sora_zoom_Screen/sora_zoom_Screen.dart';
 import 'package:hesat_quran/ui/theme/sizes/sizes.dart';
 import 'package:hesat_quran/view_model/sora_details_view_model.dart';
 import 'package:provider/provider.dart';
@@ -12,7 +14,8 @@ import '../../custom_widgets/sora_properties_widget.dart';
 
 class SoraDetailsScreen extends StatefulWidget {
   final String page;
-  const SoraDetailsScreen({Key? key, required this.page}) : super(key: key);
+  final String soraId;
+  const SoraDetailsScreen({Key? key, required this.page, required this.soraId}) : super(key: key);
 
   @override
   State<SoraDetailsScreen> createState() => _SoraDetailsScreenState();
@@ -32,6 +35,8 @@ class _SoraDetailsScreenState extends State<SoraDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.soraId);
+    print(widget.page);
     final provider = Provider.of<SoraDetialsViewModel>(context);
     return Scaffold(
       appBar: commonAppBar(context, Constants.readingText),
@@ -96,7 +101,7 @@ class _SoraDetailsScreenState extends State<SoraDetailsScreen> {
                                     )
                                   ],
                                 ),
-                                SoraPropertiesList(provider: provider)
+                                SoraPropertiesList(provider: provider , soraId: widget.soraId,)
                               ],
                             ),
                           ],
@@ -108,6 +113,7 @@ class _SoraDetailsScreenState extends State<SoraDetailsScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       CustomButton(
+                        onTap: () => Get.to(()=>const SoraZoomScreen(),transition: Transition.zoom),
                         title: Constants.zoom,
                         widthRatio: 0.3,
                         fontSized: 12,
@@ -115,6 +121,7 @@ class _SoraDetailsScreenState extends State<SoraDetailsScreen> {
                       ),
                       const BigPadding(),
                       CustomButton(
+                        onTap: () => provider.saveSora(context, widget.soraId),
                         title: Constants.save,
                         widthRatio: 0.3,
                         fontSized: 12,

@@ -6,6 +6,7 @@ import '../models/home_model.dart';
 
 Future<List<HomeModel>> getHomeService(String type) async {
   try {
+    print({"id": await getId(), "type": type});
     my_dio.Response response = await dio().post('all.php',
         data: my_dio.FormData.fromMap({"id": await getId(), "type": type}));
     print(response.data);

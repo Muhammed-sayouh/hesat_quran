@@ -38,7 +38,9 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         key: _scaffoldkey,
         drawer: const MyDrawer(),
-        body:SafeArea(
+        body:  provider.Loader
+            ? const Center(child: CupertinoActivityIndicator())
+            : SafeArea(
                 child: Column(
                   children: [
                     HomeAppBar(
@@ -79,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               });
                             },
                             child: Text(
-                              'الأكثر تصفحا',
+                              'الأكثر إستماعا',
                               style: mediumBlackFont().copyWith(
                                   fontWeight: FontWeight.bold,
                                   color:
@@ -90,9 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     const MediumPadding(),
-                 provider.Loader
-            ? const Center(child: CupertinoActivityIndicator())
-            :     Expanded(
+                   Expanded(
                       child: Padding(
                         padding: commonPaddingHorizental(context),
                         child: ListView.builder(

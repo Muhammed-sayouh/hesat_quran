@@ -68,7 +68,7 @@ class _DropDownState extends State<DropDown> {
                       child: Text(value.name, 
                       textDirection: TextDirection.rtl,
                            style: TextStyle(
-                        height: 1.6, color: AppColors.darkGray, fontSize: 15),),
+                        height: 1.6, color: Colors.black, fontSize: 15),),
                     ),
                   );
                 }).toList(),

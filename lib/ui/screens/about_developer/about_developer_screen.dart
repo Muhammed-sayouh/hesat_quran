@@ -5,6 +5,8 @@ import 'package:hesat_quran/ui/custom_widgets/common_appbar.dart';
 import 'package:hesat_quran/ui/custom_widgets/custom_images.dart';
 import 'package:hesat_quran/ui/theme/sizes/sizes.dart';
 import 'package:hesat_quran/ui/theme/style/font_style.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 
 import '../../../models/my_sitting_model.dart';
 import '../../../services/get_sitting.dart';
@@ -51,30 +53,30 @@ class _AboutDeveloperScreenState extends State<AboutDeveloperScreen> {
           const BigPadding(),
           const CustomAssetImage(
             imagePath: Constants.logoImage,
-            width: 100,
+            width: 130,
           ),
           const BigPadding(),
           Text(
             "حصه قران",
-            style: mediumBlackFont().copyWith(
+            style: bigBlackFont().copyWith(
                 color: AppColors.brownDarkColor, fontWeight: FontWeight.bold),
           ),
           const BigPadding(),
           Text(
             "${sitting[5].name} ${sitting[5].description}",
-            style: mediumBlackFont().copyWith(
+            style: bigBlackFont().copyWith(
                 color: AppColors.brownDarkColor, fontWeight: FontWeight.bold),
           ),
           const BigPadding(),
           Text(
             "تصميم وبرمجة",
-            style: mediumBlackFont().copyWith(
+            style: bigBlackFont().copyWith(
                 color: AppColors.brownDarkColor, fontWeight: FontWeight.bold),
           ),
           const BigPadding(),
           Text(
             "مؤسسة التميز العربي",
-            style: mediumBlackFont().copyWith(
+            style: bigBlackFont().copyWith(
                 color: AppColors.brownDarkColor, fontWeight: FontWeight.bold),
           ),
            const BigPadding(),
@@ -84,8 +86,8 @@ class _AboutDeveloperScreenState extends State<AboutDeveloperScreen> {
               const CustomAssetImage(imagePath: Constants.whatsAppIcon,width: 25,),
             
               Text(
-               "${sitting[6].name} ${sitting[6].description}",
-                style: mediumBlackFont().copyWith(
+               "   ${sitting[7].description} ",
+                style: bigBlackFont().copyWith(
                     color: AppColors.brownDarkColor, fontWeight: FontWeight.bold),
               ),
             ],

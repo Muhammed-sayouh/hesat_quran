@@ -47,45 +47,60 @@ class _ContinueReadingScreenState extends State<ContinueReadingScreen> {
       appBar: commonAppBar(context, Constants.countineReading),
       body: Padding(
         padding: commonPaddingHorizental(context),
-        child:loader? const Center(child: CupertinoActivityIndicator()):Column(
-          children: [
-            SizedBox(
-              height: height(context, 0.04),
-            ),
-            CustomAssetImage(
-              imagePath: Constants.textLogoImage,
-              width: width(context, 0.6),
-              height: height(context, 0.1),
-            ),
-            SizedBox(
-              height: height(context, 0.1),
-            ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: readers.length,
-                itemBuilder: (context, index) => Column(
-                  children: [
-                    ContinueReadingItem(title: readers[index].souraName),
-                    SizedBox(
-                      height: height(context, 0.05),
-                    ),
-                    CustomButton(
-                        onTap: () => Get.to(
-                            () => SoraDetailsScreen(
-                                page: readers[index].page,
-                                soraId: readers[index].souraId),
-                            transition: Transition.downToUp),
-                        title: Constants.continueText),
-                  ],
-                ),
+        child: loader
+            ? const Center(child: CupertinoActivityIndicator())
+            : Column(
+                children: [
+                  SizedBox(
+                    height: height(context, 0.04),
+                  ),
+                  CustomAssetImage(
+                    imagePath: Constants.textLogoImage,
+                    width: width(context, 0.6),
+                    height: height(context, 0.1),
+                  ),
+                  SizedBox(
+                    height: height(context, 0.1),
+                  ),
+                  readers.isEmpty
+                      ? Column(
+                          children: [
+                            const ContinueReadingItem(title: 'لا يوجد اي سور محفوظه'),
+                            SizedBox(
+                              height: height(context, 0.05),
+                            ),
+                            CustomButton(
+                                onTap: () => Get.back(),
+                                title: Constants.continueText),
+                          ],
+                        )
+                      : Expanded(
+                          child: ListView.builder(
+                            itemCount: readers.length,
+                            itemBuilder: (context, index) => Column(
+                              children: [
+                                ContinueReadingItem(
+                                    title: readers[index].souraName),
+                                SizedBox(
+                                  height: height(context, 0.05),
+                                ),
+                                CustomButton(
+                                    onTap: () => Get.to(
+                                        () => SoraDetailsScreen(
+                                            page: readers[index].page,
+                                            soraId: readers[index].souraId),
+                                        transition: Transition.downToUp),
+                                    title: Constants.continueText),
+                              ],
+                            ),
+                          ),
+                        ),
+                  SizedBox(
+                    height: height(context, 0.03),
+                  ),
+                  // CustomButton(title: Constants.skip),
+                ],
               ),
-            ),
-            SizedBox(
-              height: height(context, 0.03),
-            ),
-            // CustomButton(title: Constants.skip),
-          ],
-        ),
       ),
     );
   }

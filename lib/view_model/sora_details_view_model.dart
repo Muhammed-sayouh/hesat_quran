@@ -66,7 +66,8 @@ class SoraDetialsViewModel with ChangeNotifier {
     notifyListeners();
     try {
       await Provider.of<SaveSoraService>(context, listen: false)
-          .saveSoraSer(page: initialPageNumber.toString(), soraId: soraId);
+          .saveSoraSer(page: initialPageNumber.toString().padLeft(4, '0') +
+          '.jpg', soraId: soraId);
 
       customToast("تم الحفظ للاستكمال من مكان السوره");
 

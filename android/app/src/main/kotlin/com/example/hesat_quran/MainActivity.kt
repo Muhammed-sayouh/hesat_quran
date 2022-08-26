@@ -1,4 +1,4 @@
-package com.example.hesat_quran
+package com.eltamiuz.hesatquran
 
 import io.flutter.embedding.android.FlutterActivity
 

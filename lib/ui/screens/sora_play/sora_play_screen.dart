@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hesat_quran/helpers/constants.dart';
 import 'package:hesat_quran/ui/custom_widgets/common_appbar.dart';
@@ -10,7 +11,9 @@ import 'package:hesat_quran/ui/theme/style/font_style.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:provider/provider.dart';
 
+import '../../../view_model/home_view_model.dart';
 import '../../../view_model/page_manager.dart';
+import '../../../view_model/sora_details_view_model.dart';
 
 class SoraPlayScreen extends StatefulWidget {
   final String soraName;
@@ -41,28 +44,37 @@ class _SoraPlayScreenState extends State<SoraPlayScreen> {
 
   late AudioPlayer _audioPlayer;
 
-  int initialPageNumber =0 ;
+  int initialPageNumber = 0;
 
   void nextPage() {
-     _audioPlayer.pause();
+    _audioPlayer.pause();
     initialPageNumber = initialPageNumber + 1;
-    _init( widget.readerFolder,initialPageNumber.toString(),);
-  
+            Provider.of<HomeViewModel>(context, listen: false).getSora(context, "0" , initialPageNumber.toString());
+
+    _init(
+      widget.readerFolder,
+      initialPageNumber.toString(),
+    );
   }
 
-    void previousPage() {
+  void previousPage() {
     if (initialPageNumber > 1) {
-   _audioPlayer.pause();
-    initialPageNumber = initialPageNumber- 1;
-    _init( widget.readerFolder,initialPageNumber.toString(),);
-     
+      _audioPlayer.pause();
+      initialPageNumber = initialPageNumber - 1;
+                  Provider.of<HomeViewModel>(context, listen: false).getSora(context, "0" , initialPageNumber.toString());
+
+      _init(
+        widget.readerFolder,
+        initialPageNumber.toString(),
+      );
     }
   }
 
   Future<void> _init(String readerForder, String soraId) async {
     _audioPlayer = AudioPlayer();
     Future.delayed(Duration.zero).then((value) async {
-      print("${Constants.soundsUrl + readerForder + soraId + ".mp3"}============================>url");
+      print(
+          "${Constants.soundsUrl + readerForder + soraId + ".mp3"}============================>url");
       await _audioPlayer
           .setUrl(Constants.soundsUrl + readerForder + soraId + ".mp3");
 
@@ -123,12 +135,16 @@ class _SoraPlayScreenState extends State<SoraPlayScreen> {
     _audioPlayer.seek(position);
   }
 
+  String? soraName;
   @override
   void initState() {
     super.initState();
+    soraName = widget.soraName;
     _init(widget.readerFolder, widget.soraId);
-     initialPageNumber = int.parse(widget.soraId);
-
+    initialPageNumber = int.parse(widget.soraId);
+    Provider.of<SoraDetialsViewModel>(context, listen: false)
+        .updateSoraRead(widget.soraId);
+        Provider.of<HomeViewModel>(context, listen: false).getSora(context, "0" , widget.soraId);
   }
 
   @override
@@ -139,6 +155,8 @@ class _SoraPlayScreenState extends State<SoraPlayScreen> {
 
   @override
   Widget build(BuildContext context) {
+     final provider =       Provider.of<HomeViewModel>(context);
+
     return Scaffold(
       appBar: commonAppBar(context, "الإستماع"),
       body: Center(
@@ -160,12 +178,11 @@ class _SoraPlayScreenState extends State<SoraPlayScreen> {
                   alignment: Alignment.centerRight,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
-                    
                     children: [
-                      Text(
-                        widget.soraName,
-                        style:
-                            bigBlackFont().copyWith(fontWeight: FontWeight.bold),
+                    provider.Loader? const CupertinoActivityIndicator(): Text(
+                        provider.soraInfo[0].name,
+                        style: bigBlackFont()
+                            .copyWith(fontWeight: FontWeight.bold),
                       ),
                       const MediumPadding(),
                       const MediumPadding(),
@@ -212,7 +229,8 @@ class _SoraPlayScreenState extends State<SoraPlayScreen> {
                     child: Container(
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        border: Border.all(color: Colors.orange[400]!, width: 2),
+                        border:
+                            Border.all(color: Colors.orange[400]!, width: 2),
                       ),
                       child: const SizedBox(
                         width: 40,
@@ -261,7 +279,7 @@ class _SoraPlayScreenState extends State<SoraPlayScreen> {
                     horizental: true,
                   ),
                   InkWell(
-                     onTap: () => nextPage(),
+                    onTap: () => nextPage(),
                     child: Container(
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,

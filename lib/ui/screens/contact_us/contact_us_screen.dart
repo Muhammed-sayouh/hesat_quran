@@ -9,6 +9,7 @@ import 'package:hesat_quran/ui/custom_widgets/custom_buttons.dart';
 import 'package:hesat_quran/ui/custom_widgets/custom_textform.dart';
 import 'package:hesat_quran/ui/theme/sizes/sizes.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../models/my_sitting_model.dart';
 import '../../../services/get_sitting.dart';
@@ -114,7 +115,10 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                           height: 10,
                         ),
                         InkWell(
-                          onTap: () {},
+                          onTap: () async{
+
+                            await launchUrl(Uri.parse("tel:${sitting[3].description}"));
+                          },
                           child: ListTile(
                             dense: true,
                             leading: Container(
@@ -127,10 +131,14 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                                 width: 22,
                               ),
                             ),
-                            title: Text(
-                              sitting[3].description,
-                              style: mediumBlackFont().copyWith(
-                                  fontWeight: FontWeight.bold, fontSize: 16),
+                            title: Align(
+                              alignment: Alignment.centerRight,
+                              child: Text(
+                                sitting[3].description,
+                                textDirection: TextDirection.ltr,
+                                style: mediumBlackFont().copyWith(
+                                    fontWeight: FontWeight.bold, fontSize: 16),
+                              ),
                             ),
                           ),
                         ),

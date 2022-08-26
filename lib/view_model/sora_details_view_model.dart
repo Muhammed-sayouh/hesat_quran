@@ -6,6 +6,7 @@ import 'package:hesat_quran/services/save_sora_service.dart';
 import 'package:provider/provider.dart';
 
 import '../models/categories_model.dart';
+import '../services/get_home_services.dart';
 import '../ui/custom_widgets/custome_toast.dart';
 
 class SoraDetialsViewModel with ChangeNotifier {
@@ -78,4 +79,27 @@ class SoraDetialsViewModel with ChangeNotifier {
       customToast(Constants.noInternet);
     }
   }
+
+
+    Future<void> updateSoraRead(String soraId) async {
+    try {
+      await updateSoura(
+        read: '1',
+        soraId:soraId,
+      );
+    } catch (error) {
+      rethrow;
+    }
+  }
+    Future<void> updateSoralisten(String soraId) async {
+    try {
+      await updateSoura(
+        listen: '1',
+        soraId:soraId,
+      );
+    } catch (error) {
+      rethrow;
+    }
+  }
 }
+

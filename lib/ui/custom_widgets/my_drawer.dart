@@ -67,7 +67,10 @@ class MyDrawer extends StatelessWidget {
                 DrawerItem(
                   image: Constants.readingIcon,
                   title: Constants.countineReading,
-                  onTap: () => Get.to(() => const ContinueReadingScreen(),
+                  onTap: () => Get.to(
+                      () => const ContinueReadingScreen(
+                            fromSplash: false,
+                          ),
                       transition: Transition.downToUp),
                 ),
                 DrawerItem(
@@ -85,18 +88,18 @@ class MyDrawer extends StatelessWidget {
                 DrawerItem(
                   image: Constants.infoIcon,
                   title: Constants.whoUs,
-                   onTap: () => Get.to(() => const aboutUsScreen(),
+                  onTap: () => Get.to(() => const aboutUsScreen(),
                       transition: Transition.downToUp),
                 ),
                 DrawerItem(
-                    onTap: () => Get.to(() => const ContactUsScreen(),
+                  onTap: () => Get.to(() => const ContactUsScreen(),
                       transition: Transition.downToUp),
                   image: Constants.phoneIcon,
                   title: Constants.callUs,
                 ),
                 DrawerItem(
                     onTap: () => Get.to(() => const AboutDeveloperScreen(),
-                      transition: Transition.downToUp),
+                        transition: Transition.downToUp),
                     image: Constants.developerIcon,
                     title: Constants.aboutDeleoper),
               ],

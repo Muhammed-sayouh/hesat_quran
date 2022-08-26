@@ -15,7 +15,8 @@ import '../../custom_widgets/sora_properties_widget.dart';
 class SoraDetailsScreen extends StatefulWidget {
   final String page;
   final String soraId;
-  const SoraDetailsScreen({Key? key, required this.page, required this.soraId}) : super(key: key);
+  const SoraDetailsScreen({Key? key, required this.page, required this.soraId})
+      : super(key: key);
 
   @override
   State<SoraDetailsScreen> createState() => _SoraDetailsScreenState();
@@ -27,6 +28,8 @@ class _SoraDetailsScreenState extends State<SoraDetailsScreen> {
     Provider.of<SoraDetialsViewModel>(context, listen: false).expand = false;
     Provider.of<SoraDetialsViewModel>(context, listen: false)
         .fetchCategories(context);
+    Provider.of<SoraDetialsViewModel>(context, listen: false)
+        .updateSoraRead(widget.soraId);
     Provider.of<SoraDetialsViewModel>(context, listen: false)
         .imageLink(page: widget.page);
 
@@ -76,7 +79,8 @@ class _SoraDetailsScreenState extends State<SoraDetailsScreen> {
                                       child: Row(
                                         children: [
                                           InkWell(
-                                            onTap: () => provider.previousPage(),
+                                            onTap: () =>
+                                                provider.previousPage(),
                                             child: CustomAssetImage(
                                               imagePath:
                                                   Constants.forwardCircleIcon,
@@ -90,9 +94,10 @@ class _SoraDetailsScreenState extends State<SoraDetailsScreen> {
                                             horizental: true,
                                           ),
                                           InkWell(
-                                              onTap: () => provider.nextPage(),
+                                            onTap: () => provider.nextPage(),
                                             child: CustomAssetImage(
-                                              imagePath: Constants.backCircleIcon,
+                                              imagePath:
+                                                  Constants.backCircleIcon,
                                               width: width(context, 0.1),
                                             ),
                                           ),
@@ -101,7 +106,10 @@ class _SoraDetailsScreenState extends State<SoraDetailsScreen> {
                                     )
                                   ],
                                 ),
-                                SoraPropertiesList(provider: provider , soraId: widget.soraId,)
+                                SoraPropertiesList(
+                                  provider: provider,
+                                  soraId: widget.soraId,
+                                )
                               ],
                             ),
                           ],
@@ -113,7 +121,8 @@ class _SoraDetailsScreenState extends State<SoraDetailsScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       CustomButton(
-                        onTap: () => Get.to(()=>const SoraZoomScreen(),transition: Transition.zoom),
+                        onTap: () => Get.to(() => const SoraZoomScreen(),
+                            transition: Transition.zoom),
                         title: Constants.zoom,
                         widthRatio: 0.3,
                         fontSized: 12,

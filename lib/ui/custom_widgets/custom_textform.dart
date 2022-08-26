@@ -6,21 +6,27 @@ import '../theme/style/font_style.dart';
 
 class CustomTextFormFild extends StatelessWidget {
   final String hint;
-  const CustomTextFormFild({Key? key, required this.hint}) : super(key: key);
+  void Function()? onTap;
+  TextEditingController? controller;
+   CustomTextFormFild({Key? key, required this.hint , required this.onTap , this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller ,
       cursorColor: AppColors.brownDarkColor,
       decoration: InputDecoration(
           isDense: true,
           hintText: hint,
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
-          prefixIcon: Icon(
-            Icons.search,
-            size: 24,
-            color: AppColors.darkGray,
+          prefixIcon: InkWell(
+            onTap: onTap,
+            child: Icon(
+              Icons.search,
+              size: 24,
+              color: AppColors.darkGray,
+            ),
           ),
           hintStyle: TextStyle(
             height: 1.6,

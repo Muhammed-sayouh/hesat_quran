@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hesat_quran/helpers/constants.dart';
+import 'package:hesat_quran/services/get_my_search.dart';
 import 'package:hesat_quran/ui/screens/sora_details_screen/sora_details_screen.dart';
 import 'package:hesat_quran/ui/theme/sizes/sizes.dart';
 import 'package:hesat_quran/ui/theme/style/colors.dart';
@@ -9,6 +10,7 @@ import 'package:hesat_quran/ui/theme/style/font_style.dart';
 import 'package:hesat_quran/view_model/home_view_model.dart';
 import 'package:provider/provider.dart';
 
+import '../../../models/search_model.dart';
 import '../../custom_widgets/home_appbar.dart';
 import '../../custom_widgets/my_drawer.dart';
 import '../../custom_widgets/top_Widget_home_screen.dart';
@@ -22,10 +24,13 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
+ 
 
   @override
   void initState() {
-    Provider.of<HomeViewModel>(context, listen: false).fetchHome(context, "1");
+    Provider.of<HomeViewModel>(context, listen: false)
+        .fetchHome(context, "0", "0");
+    Provider.of<HomeViewModel>(context, listen: false).addUserToken();
     super.initState();
   }
 
@@ -38,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         key: _scaffoldkey,
         drawer: const MyDrawer(),
-        body:  provider.Loader
+        body: provider.Loader
             ? const Center(child: CupertinoActivityIndicator())
             : SafeArea(
                 child: Column(
@@ -57,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           InkWell(
                             onTap: () {
-                              provider.fetchHome(context, "1");
+                              provider.fetchHome(context, "0", "0");
                               setState(() {
                                 toggel = 0;
                               });
@@ -75,13 +80,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           InkWell(
                             onTap: () {
-                              provider.fetchHome(context, "0");
+                              provider.fetchHome(context, "2", "0");
                               setState(() {
                                 toggel = 1;
                               });
                             },
                             child: Text(
-                              'الأكثر إستماعا',
+                              'الأكثر تصفحا',
                               style: mediumBlackFont().copyWith(
                                   fontWeight: FontWeight.bold,
                                   color:
@@ -92,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     const MediumPadding(),
-                   Expanded(
+                    Expanded(
                       child: Padding(
                         padding: commonPaddingHorizental(context),
                         child: ListView.builder(

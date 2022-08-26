@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "818736442472",
+    "project_id": "hesatquran-73f9e",
+    "storage_bucket": "hesatquran-73f9e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:818736442472:android:d88da1e14321479ed75fdd",
+        "android_client_info": {
+          "package_name": "com.eltamiuz.hesatquran"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "818736442472-uq6rgk6el30nasn1kbkbc43s6c1fk44c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKH07RSAM7nHmAyEZUtInaIB2TEurV4lw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "818736442472-uq6rgk6el30nasn1kbkbc43s6c1fk44c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -24,7 +24,7 @@ class AllSorasScreen extends StatefulWidget {
 class _AllSorasScreenState extends State<AllSorasScreen> {
   @override
   void initState() {
-    Provider.of<HomeViewModel>(context, listen: false).fetchHome(context, "1");
+    Provider.of<HomeViewModel>(context, listen: false).fetchHome(context, "0","0");
     super.initState();
   }
   int toggel = 0;
@@ -45,7 +45,7 @@ class _AllSorasScreenState extends State<AllSorasScreen> {
                   children: [
                          InkWell(
                             onTap: () {
-                              provider.fetchHome(context, "1");
+                              provider.fetchHome(context, "0","0");
                               setState(() {
                                 toggel = 0;
                               });
@@ -63,13 +63,13 @@ class _AllSorasScreenState extends State<AllSorasScreen> {
                           ),
                           InkWell(
                             onTap: () {
-                              provider.fetchHome(context, "0");
+                              provider.fetchHome(context, "1","0");
                               setState(() {
                                 toggel = 1;
                               });
                             },
                             child: Text(
-                              'الأكثر تصفحا',
+                              'الأكثر إستماعا',
                               style: mediumBlackFont().copyWith(
                                   fontWeight: FontWeight.bold,
                                   color:
